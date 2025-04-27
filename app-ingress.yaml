@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-ingress
+  annotations:  # to add extra configuration four our ingress
+    nginx.ingress.kubernetes.io/rewrite-target: /  # Rewrite the target URL to / so that it will work with our web app
+spec:
+  rules:
+    - host: synchat.internal
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web-service
+                port:
+                  number: 80
+    - host: synchatapi.internal
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: api-service
+                port:
+                  number: 80
+  # This says that any traffic to the synchat.internal domain name should be routed to the web-service and any traffic to synchatapi.internal domain name should be routed to the api-service
