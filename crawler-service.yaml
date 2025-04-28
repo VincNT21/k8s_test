@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: crawler-service
+  namespace: crawler
 spec:
   selector:
     app: synergychat-crawler # This is how the service knows which pods to route traffic to

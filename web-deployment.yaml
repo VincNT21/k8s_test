@@ -2,20 +2,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    deployment.kubernetes.io/revision: "1"
+    deployment.kubernetes.io/revision: "2"
     kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"deployment.kubernetes.io/revision":"1"},"creationTimestamp":"2025-04-25T14:36:42Z","generation":3,"labels":{"app":"synergychat-web"},"name":"synergychat-web","namespace":"default","resourceVersion":"2394","uid":"3b7953d3-fba2-4a47-8b5d-e112ba0feaab"},"spec":{"progressDeadlineSeconds":600,"replicas":3,"revisionHistoryLimit":10,"selector":{"matchLabels":{"app":"synergychat-web"}},"strategy":{"rollingUpdate":{"maxSurge":"25%","maxUnavailable":"25%"},"type":"RollingUpdate"},"template":{"metadata":{"creationTimestamp":null,"labels":{"app":"synergychat-web"}},"spec":{"containers":[{"image":"docker.io/bootdotdev/synergychat-web:latest","imagePullPolicy":"Always","name":"synergychat-web","resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File"}],"dnsPolicy":"ClusterFirst","restartPolicy":"Always","schedulerName":"default-scheduler","securityContext":{},"terminationGracePeriodSeconds":30}}},"status":{"availableReplicas":10,"conditions":[{"lastTransitionTime":"2025-04-25T14:36:42Z","lastUpdateTime":"2025-04-25T14:36:49Z","message":"ReplicaSet \"synergychat-web-f765d99db\" has successfully progressed.","reason":"NewReplicaSetAvailable","status":"True","type":"Progressing"},{"lastTransitionTime":"2025-04-26T11:50:33Z","lastUpdateTime":"2025-04-26T11:50:33Z","message":"Deployment has minimum availability.","reason":"MinimumReplicasAvailable","status":"True","type":"Available"}],"observedGeneration":3,"readyReplicas":10,"replicas":10,"updatedReplicas":10}}
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"deployment.kubernetes.io/revision":"1"},"creationTimestamp":"2025-04-25T14:36:42Z","generation":5,"labels":{"app":"synergychat-web"},"name":"synergychat-web","namespace":"default","resourceVersion":"15267","uid":"3b7953d3-fba2-4a47-8b5d-e112ba0feaab"},"spec":{"progressDeadlineSeconds":600,"replicas":3,"revisionHistoryLimit":10,"selector":{"matchLabels":{"app":"synergychat-web"}},"strategy":{"rollingUpdate":{"maxSurge":"25%","maxUnavailable":"25%"},"type":"RollingUpdate"},"template":{"metadata":{"creationTimestamp":null,"labels":{"app":"synergychat-web"}},"spec":{"containers":[{"envFrom":[{"configMapRef":{"name":"web-service-configmap"}}],"image":"docker.io/bootdotdev/synergychat-web:latest","imagePullPolicy":"Always","name":"synergychat-web","resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File"}],"dnsPolicy":"ClusterFirst","restartPolicy":"Always","schedulerName":"default-scheduler","securityContext":{},"terminationGracePeriodSeconds":30}}},"status":{"availableReplicas":3,"conditions":[{"lastTransitionTime":"2025-04-25T14:36:42Z","lastUpdateTime":"2025-04-25T14:36:49Z","message":"ReplicaSet \"synergychat-web-f765d99db\" has successfully progressed.","reason":"NewReplicaSetAvailable","status":"True","type":"Progressing"},{"lastTransitionTime":"2025-04-28T06:52:39Z","lastUpdateTime":"2025-04-28T06:52:39Z","message":"Deployment has minimum availability.","reason":"MinimumReplicasAvailable","status":"True","type":"Available"}],"observedGeneration":5,"readyReplicas":3,"replicas":3,"updatedReplicas":3}}
   creationTimestamp: "2025-04-25T14:36:42Z"
-  generation: 4
+  generation: 6
   labels:
     app: synergychat-web
   name: synergychat-web
   namespace: default
-  resourceVersion: "2715"
+  resourceVersion: "28491"
   uid: 3b7953d3-fba2-4a47-8b5d-e112ba0feaab
 spec:
   progressDeadlineSeconds: 600
-  replicas: 3
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -32,7 +31,10 @@ spec:
         app: synergychat-web
     spec:
       containers:
-      - image: docker.io/bootdotdev/synergychat-web:latest
+      - envFrom:
+        - configMapRef:
+            name: web-service-configmap
+        image: docker.io/bootdotdev/synergychat-web:latest
         imagePullPolicy: Always
         name: synergychat-web
         resources: {}
@@ -47,18 +49,18 @@ status:
   availableReplicas: 3
   conditions:
   - lastTransitionTime: "2025-04-25T14:36:42Z"
-    lastUpdateTime: "2025-04-25T14:36:49Z"
-    message: ReplicaSet "synergychat-web-f765d99db" has successfully progressed.
+    lastUpdateTime: "2025-04-28T07:08:17Z"
+    message: ReplicaSet "synergychat-web-55cd7456" has successfully progressed.
     reason: NewReplicaSetAvailable
     status: "True"
     type: Progressing
-  - lastTransitionTime: "2025-04-26T11:50:33Z"
-    lastUpdateTime: "2025-04-26T11:50:33Z"
+  - lastTransitionTime: "2025-04-28T11:28:02Z"
+    lastUpdateTime: "2025-04-28T11:28:02Z"
     message: Deployment has minimum availability.
     reason: MinimumReplicasAvailable
     status: "True"
     type: Available
-  observedGeneration: 4
+  observedGeneration: 6
   readyReplicas: 3
   replicas: 3
   updatedReplicas: 3
